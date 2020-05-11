@@ -89,7 +89,7 @@ def createObject(w, h, dt):
     return __objects[len(__objects)-1]
 
 def update():
-    #try:
+    try:
         __scene["image"].delete("all")
         global  __objects
         for obj in __objects:
@@ -104,5 +104,5 @@ def update():
                         __scene["image"].create_rectangle(x, y, x+__scene["step"], y+__scene["step"], fill=color, width=0)
         __scene["image"].update()
         time.sleep(__scene["animTime"])
-    #except:
-    #    exit()
+    except:
+        exit()
