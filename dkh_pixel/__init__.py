@@ -13,8 +13,6 @@ class pixelImage:
         self.__n = 0
     def addImg(self, dt):
         self.__data.append(dt)
-        print(self.__data)
-        print()
     def nextSkin(self):
         self.__n += 1
         if self.__n >= len(self.__data): self.__n = 0
