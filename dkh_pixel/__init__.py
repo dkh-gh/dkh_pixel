@@ -4,16 +4,17 @@ import time
    
 class pixelImage:
     
-    __data = []
-    __x = 0
-    __y = 0
-    __n = 0
-    
     def __init__(self, w, h):
         self.__width = w
         self.__height = h
+        self.__data = []
+        self.__x = 0
+        self.__y = 0
+        self.__n = 0
     def addImg(self, dt):
         self.__data.append(dt)
+        print(self.__data)
+        print()
     def nextSkin(self):
         self.__n += 1
         if self.__n >= len(self.__data): self.__n = 0
@@ -64,7 +65,7 @@ __scene = {
     "color":    "white",
     "animTime": .1
 }
-__colors = ["white", "black", "red", "orange", "yello", "green", "lightblue", "blue", "violet", "gray"]
+__colors = ["white", "black", "red", "orange", "yellow", "green", "lightblue", "blue", "violet", "gray"]
 
 def animationTime(tm):
     global __scene
@@ -84,8 +85,10 @@ def createWindow(w, h, st, clr):
  
 def createObject(w, h, dt):
     global __objects, __colors
-    __objects.append(pixelImage(w, h))
-    __objects[len(__objects)-1].addImg(dt)
+    newObj = pixelImage(w, h)
+    newObj.addImg(dt)
+    __objects.append(newObj)
+    del newObj
     return __objects[len(__objects)-1]
 
 def update():
@@ -97,7 +100,6 @@ def update():
                 for w in range(obj.width):
                     color = obj.data[h*obj.width + w]
                     if int(color) >= 0 and int(color) < 10: color = __colors[color]
-                    # __scene["image"].create_rectangle(w+obj.x*__scene["step"], h+obj.y*__scene["step"], w+obj.x*__scene["step"]+__scene["step"], h+obj.y*__scene["step"]+__scene["step"], fill=color, width=0)
                     x = __scene["step"]*obj.x+w*__scene["step"]
                     y = __scene["step"]*obj.y+h*__scene["step"]
                     if x >= 0 and x <= __scene["width"]*__scene["step"] and y >= 0 and y <= __scene["height"]*__scene["step"]:

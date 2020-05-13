@@ -1,7 +1,7 @@
  
 import dkh_pixel as px
 
-px.createWindow(30, 11, 10, "white")
+px.createWindow(30, 11, 15, "white")
 px.animationTime(.25)
 
 car = px.createObject(11, 7, [
